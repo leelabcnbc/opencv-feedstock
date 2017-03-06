@@ -35,7 +35,7 @@ cmake -LAH ..                                                            \
     -DWITH_OPENCL=0                                                      \
     -DWITH_OPENNI=0                                                      \
     -DWITH_FFMPEG=0                                                      \
-    -DCMAKE_INSTALL_PREFIX=$PREFIX
-
+    -DCMAKE_INSTALL_PREFIX=$PREFIX                                       \
+    -DWITH_GTK=1
 make
 make install

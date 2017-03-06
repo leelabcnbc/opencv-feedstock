@@ -1,4 +1,4 @@
-{% set version = "2.4.12" %}
+{% set version = "2.4.13" %}
 {% set filename = "opencv2-%s.zip" % version %}
 
 package:
@@ -8,26 +8,29 @@ package:
 source:
   fn: {{ filename }}
   url: https://github.com/Itseez/opencv/archive/{{ version }}.zip
-  sha1: 2225768a48dbf99426bf77451a433ed432f54d8e
+  sha1: 0c6e4d890f6252ae8feae0c92f397f63aaa41a08
 
   patches:
     - osx_rpath.patch  # [osx]
 
 build:
-  number: 2
-  skip: true  # [not py27]
+  number: 0
+  skip: true  # [not (linux and py27)]
+  features:
+    - gtk2
 
 requirements:
   build:
     - cmake
     - python
     - numpy x.x
-    - eigen 3.*
+    - eigen 3.2.*
     - jasper   # [unix]
     - zlib 1.2*
     - jpeg 9*
     - libtiff 4.0.*
     - libpng 1.6*
+    - gtk2
 
   run:
     - python
@@ -39,6 +42,9 @@ requirements:
     - libpng 1.6*
 
 test:
+  requires:
+    - gtk2-feature
+    - gtk2
   imports:
     - cv2
     - cv2.cv
@@ -75,6 +81,4 @@ about:
 
 extra:
   recipe-maintainers:
-    - jakirkham
-    - msarahan
-    - patricksnape
+    - zym1010
